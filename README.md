@@ -3,31 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Projeto Final de Linguagem de Programação</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f8f8f8;
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 24px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px #0001;
-    }
-    h1 {
-      font-size: 2em;
-      margin-bottom: 0.5em;
-    }
-    .footer {
-      margin-top: 2em;
-      font-style: italic;
-      text-align: center;
-      color: #555;
-    }
-    .emoji {
-      font-size: 1.3em;
-      vertical-align: middle;
-    }
-  </style>
 </head>
 <body>
   <h1>Trabalho Teorema Pascal 📐</h1>
