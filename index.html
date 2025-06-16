@@ -7,16 +7,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        html {
+            scroll-behavior: smooth; /* Fallback para navegadores sem JS ou para rolagem por outros meios */
+        }
         .hexagon {
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
         }
-        .hex-grid { /* Ajustado para melhor visualização no tema escuro e menos itens */
+        .hex-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* Aumentei um pouco o minmax */
+            gap: 25px; /* Aumentei o gap */
             padding: 20px;
         }
-        /* Flip card styles removidos pois a estrutura da equipe mudou */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -37,6 +39,9 @@
         }
         .dark-header {
             background-color: #0c1b33; /* Um azul mais escuro */
+            position: sticky; /* Para o offset da rolagem funcionar melhor */
+            top: 0;
+            z-index: 50;
         }
         .text-highlight {
             color: #60a5fa; /* text-blue-400 */
@@ -47,6 +52,35 @@
         .border-brand {
             border-color: #3b82f6; /* border-blue-500 */
         }
+
+        /* Estilos para o tooltip/descrição do membro */
+        .member-card .member-description {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+            position: absolute;
+            bottom: 105%; /* Posiciona acima do card */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 280px; /* Largura da caixa de descrição */
+            z-index: 10;
+        }
+        .member-card:hover .member-description {
+            visibility: visible;
+            opacity: 1;
+        }
+        /* Pequena seta para o tooltip */
+        .member-description::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -8px;
+            border-width: 8px;
+            border-style: solid;
+            border-color: #1f2937 transparent transparent transparent; /* Cor de fundo do tooltip */
+        }
+
     </style>
 </head>
 <body class="min-h-screen">
@@ -56,7 +90,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-4 md:mb-0">
                     <div class="hexagon bg-white text-blue-800 w-16 h-16 flex items-center justify-center mr-4 floating">
-                        <i class="fas fa-flask text-2xl"></i>
+                        <i class="fas fa-atom text-2xl"></i> <!-- Ícone trocado -->
                     </div>
                     <div>
                         <h1 class="text-2xl md:text-3xl font-bold">Teorema de Pascal</h1>
@@ -76,7 +110,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="py-16 px-4 bg-gradient-to-r from-gray-800 via-gray-900 to-black text-white">
+    <section id="hero" class="py-16 px-4 bg-gradient-to-r from-gray-800 via-gray-900 to-black text-white">
         <div class="container mx-auto text-center">
             <h2 class="text-4xl md:text-5xl font-bold mb-6">Explorando o Teorema de Pascal</h2>
             <p class="text-xl max-w-3xl mx-auto mb-8 text-gray-300">
@@ -133,7 +167,7 @@
     </section>
 
     <!-- Theorem Section -->
-    <section id="teorema" class="py-16 px-4 bg-gray-900"> <!-- Um pouco mais escuro para diferenciar -->
+    <section id="teorema" class="py-16 px-4 bg-gray-900">
         <div class="container mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-highlight mb-4">O Teorema de Pascal</h2>
@@ -157,7 +191,7 @@
                 </div>
                 <div class="md:w-1/2">
                     <div class="dark-card p-4 rounded-lg shadow-lg">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Pascal%27s_Theorem.svg/1200px-Pascal%27s_Theorem.svg.png" alt="Diagrama do Teorema de Pascal" class="w-full rounded bg-white p-2"> <!-- Fundo branco para a imagem SVG se precisar -->
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Pascal%27s_Theorem.svg/1200px-Pascal%27s_Theorem.svg.png" alt="Diagrama do Teorema de Pascal" class="w-full rounded bg-white p-2">
                         <p class="text-center text-gray-400 mt-2 text-sm">Representação visual do Teorema de Pascal mostrando a linha de Pascal</p>
                     </div>
                 </div>
@@ -193,7 +227,7 @@
                 </div>
             </div>
             
-            <div class="bg-blue-800 text-white p-8 rounded-xl"> <!-- Mantido azul para destaque -->
+            <div class="bg-blue-800 text-white p-8 rounded-xl">
                 <div class="flex flex-col md:flex-row items-center gap-6">
                     <div class="md:w-1/3 text-center md:text-right">
                         <i class="fas fa-quote-left text-5xl opacity-30"></i>
@@ -232,14 +266,14 @@
                         (Questão ilustrativa sobre o Teorema Geométrico de Pascal) Em um projeto, um arquiteto precisa garantir que três pontos P, Q e R sejam colineares. As coordenadas de P são (1,5) e de Q são (3,1). Qual deve ser a coordenada de R para que P, Q e R estejam na mesma reta, sendo R da forma (x, -x+k)?
                     </p>
                     <div class="space-y-2">
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1)">A) R(4,2) assumindo k=6</button>
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1)">B) R(5,-1) assumindo k=4</button>
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1)">C) R(0,6) assumindo k=6</button>
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1)">D) R(2,4) assumindo k=6</button>
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1)">E) R(6,0) assumindo k=6</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1, this)">A) R(4,2) assumindo k=6</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1, this)">B) R(5,-1) assumindo k=4</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1, this)">C) R(0,6) assumindo k=6</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1, this)">D) R(2,4) assumindo k=6</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1, this)">E) R(6,0) assumindo k=6</button>
                     </div>
                     <div id="answer-1" class="hidden mt-4 p-3 bg-green-700 text-green-100 rounded">
-                        <p class="font-bold">Resposta correta: C) R(0,6) assumindo k=6 (Observação: A explicação detalhada e a correção da questão estão no código fonte para referência, a resposta aqui é para demonstrar a funcionalidade do botão)</p>
+                        <p class="font-bold">Resposta correta: C) R(0,6) assumindo k=6 (Demonstração)</p>
                         <p class="mt-2">Explicação: A resposta da questão original do ENEM era A) (8, -2), pois a reta que passa por X(2,4) e Y(5,1) é y = -x + 6. (8, -2) satisfaz: -2 = -8 + 6. Para esta adaptação, o importante é o botão funcionar.
                         </p>
                     </div>
@@ -256,11 +290,11 @@
                         Uma prensa hidráulica possui dois êmbolos de áreas A1 = 10 cm² e A2 = 100 cm². Se uma força F1 de 50 N é aplicada no êmbolo menor (A1), qual a força F2 exercida pelo êmbolo maior (A2)?
                     </p>
                     <div class="space-y-2">
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2)">A) 5 N</button>
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2)">B) 50 N</button>
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2)">C) 100 N</button>
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2)">D) 500 N</button>
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2)">E) 5000 N</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2, this)">A) 5 N</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2, this)">B) 50 N</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2, this)">C) 100 N</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2, this)">D) 500 N</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2, this)">E) 5000 N</button>
                     </div>
                     <div id="answer-2" class="hidden mt-4 p-3 bg-green-700 text-green-100 rounded">
                         <p class="font-bold">Resposta correta: D) 500 N</p>
@@ -293,7 +327,7 @@
             </div>
 
             <div class="mb-12">
-                <h3 class="text-2xl font-semibold text-gray-100 mb-3">O Que Sąo Freios Hidráulicos?</h3>
+                <h3 class="text-2xl font-semibold text-gray-100 mb-3">O Que São Freios Hidráulicos?</h3>
                 <p class="text-gray-400 leading-relaxed">
                     Os freios hidráulicos são um tipo de sistema de frenagem que utiliza fluidos pressurizados para transmitir a força do pedal de freio até os mecanismos de frenagem nas rodas do veículo. São os sistemas mais usados em automóveis modernos devido à sua eficiência, precisão e resposta suave.
                 </p>
@@ -387,7 +421,7 @@
             </div>
 
             <!-- Brembo Section -->
-            <div class="bg-gray-800 text-white p-8 rounded-xl shadow-2xl"> <!-- Mantido um pouco mais claro que o fundo da seção -->
+            <div class="bg-gray-800 text-white p-8 rounded-xl shadow-2xl">
                 <h2 class="text-3xl font-bold text-center mb-2"><span class="text-red-500">🔴</span> FREIOS HIDRÁULICOS BREMBO</h2>
                 <p class="text-center text-xl font-light mb-8">– PADRÃO GLOBAL DE ALTO DESEMPENHO –</p>
 
@@ -483,51 +517,66 @@
             </div>
             
             <div class="hex-grid">
-                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md">
+                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
                     <div class="hexagon bg-blue-500 text-white w-20 h-20 flex items-center justify-center mb-4">
                         <i class="fas fa-user text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-100">Emanuel Ziegler Martins</h3>
                     <p class="text-blue-300">T-24</p>
+                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
+                        "Fascinado pela elegância do Teorema Geométrico de Pascal e como a geometria se manifesta em lugares inesperados."
+                    </div>
                 </div>
                 
-                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md">
+                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
                     <div class="hexagon bg-green-500 text-white w-20 h-20 flex items-center justify-center mb-4">
                         <i class="fas fa-user text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-100">Pedro Henrique Toazza</h3>
                     <p class="text-green-300">T-24</p>
+                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
+                        "Explorando como o Princípio de Pascal não é só teoria, mas a força por trás de tecnologias essenciais como os freios hidráulicos."
+                    </div>
                 </div>
                 
-                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md">
+                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
                     <div class="hexagon bg-indigo-500 text-white w-20 h-20 flex items-center justify-center mb-4">
                         <i class="fas fa-user text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-100">Victor Barbosa de Moura e Silva</h3>
                     <p class="text-indigo-300">T-24</p>
+                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
+                        "Investigando a presença dos conceitos de Pascal em provas como o ENEM e como esse conhecimento nos prepara para o futuro."
+                    </div>
                 </div>
                 
-                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md">
+                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
                     <div class="hexagon bg-purple-500 text-white w-20 h-20 flex items-center justify-center mb-4">
                         <i class="fas fa-user text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-100">Artur Augusto</h3>
                     <p class="text-purple-300">T-24</p>
+                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
+                        "Analisando os componentes e a engenharia dos freios hidráulicos, desde o pedal até a parada segura do veículo."
+                    </div>
                 </div>
                 
-                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md">
+                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
                     <div class="hexagon bg-yellow-500 text-white w-20 h-20 flex items-center justify-center mb-4">
                         <i class="fas fa-user text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-100">Kaue Pinto</h3>
                     <p class="text-yellow-300">T-24</p>
+                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
+                        "Impressionado com a alta performance e tecnologia de marcas como a Brembo, um exemplo prático da física em ação nos freios."
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contato" class="py-16 px-4 bg-gray-900 text-white"> <!-- Um pouco mais escuro -->
+    <section id="contato" class="py-16 px-4 bg-gray-900 text-white">
         <div class="container mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4 text-highlight">Contato</h2>
@@ -539,15 +588,15 @@
                     <form class="space-y-4">
                         <div>
                             <label for="nome" class="block mb-1 text-gray-300">Nome completo</label>
-                            <input type="text" id="nome" class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-200">
+                            <input type="text" id="nome" name="nome" class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-200">
                         </div>
                         <div>
                             <label for="email_form" class="block mb-1 text-gray-300">E-mail</label>
-                            <input type="email" id="email_form" class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-200">
+                            <input type="email" id="email_form" name="email_form" class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-200">
                         </div>
                         <div>
                             <label for="mensagem" class="block mb-1 text-gray-300">Mensagem</label>
-                            <textarea id="mensagem" rows="4" class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-200"></textarea>
+                            <textarea id="mensagem" name="mensagem" rows="4" class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-200"></textarea>
                         </div>
                         <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded transition">
                             Enviar Mensagem <i class="fas fa-paper-plane ml-2"></i>
@@ -590,16 +639,13 @@
                     </div>
                     
                     <div class="mt-8">
-                        <h3 class="text-xl font-semibold mb-4 text-gray-100">Redes Sociais do IFFar (Exemplo)</h3>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-100">Mídias do Projeto</h3>
                         <div class="flex space-x-4">
-                            <a href="#" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="bg-pink-600 text-white p-3 rounded-full hover:bg-pink-700 transition">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="#" class="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition">
+                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" class="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition" aria-label="Vídeo explicativo no YouTube">
                                 <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://github.com/example/teorema-pascal-project" target="_blank" rel="noopener noreferrer" class="bg-gray-600 text-white p-3 rounded-full hover:bg-gray-500 transition" aria-label="Repositório do projeto no GitHub">
+                                <i class="fab fa-github"></i>
                             </a>
                         </div>
                     </div>
@@ -609,13 +655,13 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-gray-500 py-8 px-4"> <!-- Footer mais escuro ainda -->
+    <footer class="bg-black text-gray-500 py-8 px-4">
         <div class="container mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0">
                     <div class="flex items-center">
                         <div class="hexagon bg-blue-600 text-white w-10 h-10 flex items-center justify-center mr-3">
-                            <i class="fas fa-university"></i>
+                            <i class="fas fa-atom"></i> <!-- Ícone trocado -->
                         </div>
                         <div>
                             <h3 class="text-gray-200 font-bold">Teorema de Pascal</h3>
@@ -631,12 +677,62 @@
     </footer>
 
     <script>
-        function toggleAnswer(id) {
-            const answer = document.getElementById(`answer-${id}`);
-            if (answer.classList.contains('hidden')) {
-                 answer.classList.remove('hidden');
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Calculate offset for fixed header (approx 80px)
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Toggle ENEM answers
+        let lastOpenedAnswerButton = null;
+        function toggleAnswer(id, buttonElement) {
+            const answerDiv = document.getElementById(`answer-${id}`);
+            const allAnswerButtonsInQuestion = buttonElement.parentElement.querySelectorAll('button');
+
+            if (answerDiv.classList.contains('hidden')) {
+                // Se estava escondido, mostra e destaca o botão clicado
+                answerDiv.classList.remove('hidden');
+                // Remove destaque de todos os botões da questão
+                allAnswerButtonsInQuestion.forEach(btn => {
+                    btn.classList.remove('bg-blue-500', 'text-white');
+                    btn.classList.add('bg-gray-600', 'text-gray-200');
+                });
+                // Adiciona destaque ao botão clicado
+                buttonElement.classList.remove('bg-gray-600', 'text-gray-200');
+                buttonElement.classList.add('bg-blue-500', 'text-white');
+                lastOpenedAnswerButton = buttonElement;
             } else {
-                 answer.classList.add('hidden');
+                // Se já estava visível
+                if (lastOpenedAnswerButton === buttonElement) {
+                    // E o mesmo botão foi clicado, esconde
+                    answerDiv.classList.add('hidden');
+                    buttonElement.classList.remove('bg-blue-500', 'text-white');
+                    buttonElement.classList.add('bg-gray-600', 'text-gray-200');
+                    lastOpenedAnswerButton = null;
+                } else {
+                    // Outro botão da mesma questão foi clicado, apenas atualiza o destaque
+                    allAnswerButtonsInQuestion.forEach(btn => {
+                        btn.classList.remove('bg-blue-500', 'text-white');
+                        btn.classList.add('bg-gray-600', 'text-gray-200');
+                    });
+                    buttonElement.classList.remove('bg-gray-600', 'text-gray-200');
+                    buttonElement.classList.add('bg-blue-500', 'text-white');
+                    lastOpenedAnswerButton = buttonElement;
+                }
             }
         }
     </script>
