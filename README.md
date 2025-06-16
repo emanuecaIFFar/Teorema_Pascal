@@ -15,5 +15,8 @@
   <div class="footer">
     Pode ser usado como base no <strong>ENEM</strong> 📘🧑‍🎓
   </div>
+
+  <img src = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTlyenN6aW55eHN3cm9qbDdkNDF3d3QwY3p5eDhveDhmZmh4MmNldiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0K4kWJir91VEoa1W/giphy.gif">
+  
 </body>
 </html>
