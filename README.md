@@ -2,7 +2,6 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Projeto Final de Linguagem de Programação</title>
 </head>
 <body>
   <h1>Trabalho Teorema Pascal 📐</h1>
