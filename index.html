@@ -15,8 +15,8 @@
         }
         .hex-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* Aumentei um pouco o minmax */
-            gap: 25px; /* Aumentei o gap */
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 25px;
             padding: 20px;
         }
         @keyframes float {
@@ -29,6 +29,8 @@
         body {
             background-color: #111827; /* bg-gray-900 */
             color: #d1d5db; /* text-gray-300 */
+            overflow-wrap: break-word; /* Para ajudar a prevenir overflow de texto */
+            word-wrap: break-word; /* Alias para overflow-wrap, para maior compatibilidade */
         }
         .dark-section {
             background-color: #1f2937; /* bg-gray-800 */
@@ -39,10 +41,10 @@
         }
         .dark-header {
             background-color: #0c1b33; /* Um azul mais escuro */
-            position: sticky; /* Para o offset da rolagem funcionar melhor */
+            position: sticky;
             top: 0;
             z-index: 50;
-            transition: transform 0.3s ease-in-out; /* Adicionado para a animação do header */
+            transition: transform 0.3s ease-in-out;
         }
         .header-hidden {
             transform: translateY(-100%);
@@ -57,23 +59,23 @@
             border-color: #3b82f6; /* border-blue-500 */
         }
 
-        /* Estilos para o tooltip/descrição do membro */
         .member-card .member-description {
             visibility: hidden;
             opacity: 0;
             transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
             position: absolute;
-            bottom: 105%; /* Posiciona acima do card */
+            bottom: 105%;
             left: 50%;
             transform: translateX(-50%);
-            width: 280px; /* Largura da caixa de descrição */
+            width: 280px;
             z-index: 10;
+            overflow-wrap: break-word; /* Garante que o texto quebre dentro do tooltip */
+            word-wrap: break-word; /* Alias */
         }
         .member-card:hover .member-description {
             visibility: visible;
             opacity: 1;
         }
-        /* Pequena seta para o tooltip */
         .member-description::after {
             content: "";
             position: absolute;
@@ -82,20 +84,18 @@
             margin-left: -8px;
             border-width: 8px;
             border-style: solid;
-            border-color: #1f2937 transparent transparent transparent; /* Cor de fundo do tooltip */
+            border-color: #1f2937 transparent transparent transparent;
         }
 
     </style>
 </head>
 <body class="min-h-screen">
     <!-- Header -->
-    <header id="main-header" class="dark-header text-white shadow-lg"> {/* Adicionado ID ao header */}
+    <header id="main-header" class="dark-header text-white shadow-lg">
         <div class="container mx-auto px-4 py-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-4 md:mb-0">
-                    <div class="hexagon bg-white text-blue-800 w-16 h-16 flex items-center justify-center mr-4 floating">
-                        <i class="fas fa-atom text-2xl"></i> <!-- Ícone trocado -->
-                    </div>
+                    <!-- Ícone removido daqui -->
                     <div>
                         <h1 class="text-2xl md:text-3xl font-bold">Teorema de Pascal</h1>
                         <p class="text-brand-light">Grupo de Estudos - IFFar-Frederico Whetphalen Campus FW</p>
@@ -574,10 +574,10 @@
                     <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
                         Explicando o Teorema de Pascal com base em questões de ENEM e mostrando sua aplicação no sistema de freios hidráulicos, onde a pressão se distribui igualmente no fluido.
                     </div>
-                 </div> {/* Fechamento do card do Kaue */}
+                 </div> 
 
                 <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
-                    <div class="hexagon bg-pink-500 text-white w-20 h-20 flex items-center justify-center mb-4"> {/* Cor diferente para Luiz */}
+                    <div class="hexagon bg-pink-500 text-white w-20 h-20 flex items-center justify-center mb-4"> 
                         <i class="fas fa-user text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-100">Luiz Fernando Schwanz</h3>
@@ -659,7 +659,7 @@
                 <div class="mb-4 md:mb-0">
                     <div class="flex items-center">
                         <div class="hexagon bg-blue-600 text-white w-10 h-10 flex items-center justify-center mr-3">
-                            <i class="fas fa-atom"></i> <!-- Ícone trocado -->
+                            <i class="fas fa-atom"></i> <!-- Ícone mantido no footer, pois o pedido foi específico para o header -->
                         </div>
                         <div>
                             <h3 class="text-gray-200 font-bold">Teorema de Pascal</h3>
@@ -683,11 +683,7 @@
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     const header = document.getElementById('main-header');
-                    // Usar a altura do header visível (ou 0 se estiver oculto e fixo)
-                    // Como o header é sticky, ele sempre ocupa espaço no cálculo do offset se não estiver transformado.
-                    // Para um header que realmente some, o offset pode variar.
-                    // Mas como usamos transform, ele ainda está "lá" para o layout.
-                    const headerOffset = header.offsetHeight > 0 ? header.offsetHeight : 80; // Fallback se offsetHeight for 0
+                    const headerOffset = header.offsetHeight > 0 ? header.offsetHeight : 80; 
                     
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -736,19 +732,17 @@
         // Hide/Show header on scroll
         const header = document.getElementById('main-header');
         let lastScrollTop = 0;
-        const scrollThreshold = 50; // Limiar de rolagem em pixels antes de esconder o header
+        const scrollThreshold = 50; 
 
         window.addEventListener('scroll', function() {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
             if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
-                // Scroll Down
                 header.classList.add('header-hidden');
             } else {
-                // Scroll Up or at the top
                 header.classList.remove('header-hidden');
             }
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Para tratar scroll no topo ou em dispositivos móveis
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
         }, false);
 
     </script>
