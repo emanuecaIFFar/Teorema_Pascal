@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         html {
-            scroll-behavior: smooth; /* Fallback para navegadores sem JS ou para rolagem por outros meios */
+            scroll-behavior: smooth;
         }
         .hexagon {
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
@@ -27,20 +27,20 @@
             animation: float 4s ease-in-out infinite;
         }
         body {
-            background-color: #111827; /* bg-gray-900 */
-            color: #d1d5db; /* text-gray-300 */
-            overflow-wrap: break-word; /* Para ajudar a prevenir overflow de texto */
-            word-wrap: break-word; /* Alias para overflow-wrap, para maior compatibilidade */
+            background-color: #111827; 
+            color: #d1d5db; 
+            overflow-wrap: break-word; 
+            word-wrap: break-word; 
         }
         .dark-section {
-            background-color: #1f2937; /* bg-gray-800 */
+            background-color: #1f2937; 
         }
         .dark-card {
-            background-color: #374151; /* bg-gray-700 */
-            color: #e5e7eb; /* text-gray-200 */
+            background-color: #374151; 
+            color: #e5e7eb; 
         }
         .dark-header {
-            background-color: #0c1b33; /* Um azul mais escuro */
+            background-color: #0c1b33; 
             position: sticky;
             top: 0;
             z-index: 50;
@@ -50,15 +50,14 @@
             transform: translateY(-100%);
         }
         .text-highlight {
-            color: #60a5fa; /* text-blue-400 */
+            color: #60a5fa; 
         }
         .text-brand-light {
-            color: #93c5fd; /* text-blue-300 */
+            color: #93c5fd; 
         }
         .border-brand {
-            border-color: #3b82f6; /* border-blue-500 */
+            border-color: #3b82f6; 
         }
-
         .member-card .member-description {
             visibility: hidden;
             opacity: 0;
@@ -69,8 +68,8 @@
             transform: translateX(-50%);
             width: 280px;
             z-index: 10;
-            overflow-wrap: break-word; /* Garante que o texto quebre dentro do tooltip */
-            word-wrap: break-word; /* Alias */
+            overflow-wrap: break-word; 
+            word-wrap: break-word; 
         }
         .member-card:hover .member-description {
             visibility: visible;
@@ -86,7 +85,6 @@
             border-style: solid;
             border-color: #1f2937 transparent transparent transparent;
         }
-
     </style>
 </head>
 <body class="min-h-screen">
@@ -95,7 +93,6 @@
         <div class="container mx-auto px-4 py-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-4 md:mb-0">
-                    <!-- Ícone removido daqui -->
                     <div>
                         <h1 class="text-2xl md:text-3xl font-bold">Teorema de Pascal</h1>
                         <p class="text-brand-light">Grupo de Estudos - IFFar-Frederico Whetphalen Campus FW</p>
@@ -103,30 +100,30 @@
                 </div>
                 <nav class="flex flex-wrap gap-2 md:gap-6">
                     <a href="#sobre" class="hover:text-brand-light transition">Sobre</a>
-                    <a href="#teorema" class="hover:text-brand-light transition">O Teorema</a>
-                    <a href="#enem" class="hover:text-brand-light transition">ENEM</a>
-                    <a href="#freios-hidraulicos" class="hover:text-brand-light transition">Freios Hidráulicos</a>
                     <a href="#grupo" class="hover:text-brand-light transition">Nosso Grupo</a>
-                    <a href="#contato" class="hover:text-brand-light transition">Contato</a>
+                    <a href="#teorema" class="hover:text-brand-light transition">O Teorema</a>
+                    <a href="#freios-hidraulicos" class="hover:text-brand-light transition">Freios Hidráulicos</a>
+                    <a href="#enem" class="hover:text-brand-light transition">ENEM</a>
+                    <!-- Link Contato removido do cabeçalho -->
                 </nav>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (Permanece no topo) -->
     <section id="hero" class="py-16 px-4 bg-gradient-to-r from-gray-800 via-gray-900 to-black text-white">
         <div class="container mx-auto text-center">
             <h2 class="text-4xl md:text-5xl font-bold mb-6">Explorando o Teorema de Pascal</h2>
             <p class="text-xl max-w-3xl mx-auto mb-8 text-gray-300">
                 Um estudo das propriedades fascinantes da geometria projetiva e suas aplicações práticas, como em sistemas de freios hidráulicos.
             </p>
-            <a href="#teorema" class="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300">
-                Conheça o Teorema <i class="fas fa-arrow-down ml-2"></i>
+            <a href="#sobre" class="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300">
+                Saiba Mais <i class="fas fa-arrow-down ml-2"></i> <!-- Alterado o href para a primeira seção real -->
             </a>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- 1. About Section -->
     <section id="sobre" class="py-16 px-4 dark-section">
         <div class="container mx-auto">
             <div class="text-center mb-12">
@@ -170,7 +167,88 @@
         </div>
     </section>
 
-    <!-- Theorem Section -->
+    <!-- 2. Nosso Grupo Section -->
+    <section id="grupo" class="py-16 px-4 dark-section">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-highlight mb-4">Nosso Grupo</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto mt-4">
+                    Conheça os membros do grupo de apresentação do IFFar-Frederico Whetphalen Campus FW.
+                </p>
+            </div>
+            
+            <div class="hex-grid">
+                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
+                    <div class="hexagon bg-blue-500 text-white w-20 h-20 flex items-center justify-center mb-4">
+                        <i class="fas fa-user text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-100">Emanuel Ziegler Martins</h3>
+                    <p class="text-blue-300">T-24</p>
+                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
+                        "Ajudei na excplicação do Teorema de Pascal com freios hidráulicos e contribui para a criação do site."
+                    </div>
+                </div>
+                
+                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
+                    <div class="hexagon bg-green-500 text-white w-20 h-20 flex items-center justify-center mb-4">
+                        <i class="fas fa-user text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-100">Pedro Henrique Toazza</h3>
+                    <p class="text-green-300">T-24</p>
+                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
+                        Explorando como o Princípio de Pascal não é só teoria, mas a força por trás de tecnologias essenciais como os freios hidráulicos.
+                    </div>
+                </div>
+                
+                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
+                    <div class="hexagon bg-indigo-500 text-white w-20 h-20 flex items-center justify-center mb-4">
+                        <i class="fas fa-user text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-100">Victor Barbosa de Moura e Silva</h3>
+                    <p class="text-indigo-300">T-24</p>
+                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
+                        Investigando a presença dos conceitos de Pascal em provas como o ENEM e como esse conhecimento nos prepara para o futuro.
+                    </div>
+                </div>
+                
+                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
+                    <div class="hexagon bg-purple-500 text-white w-20 h-20 flex items-center justify-center mb-4">
+                        <i class="fas fa-user text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-100">Artur Augusto</h3>
+                    <p class="text-purple-300">T-24</p>
+                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
+                        Analisando os componentes e a engenharia dos freios hidráulicos, desde o pedal até a parada segura do veículo.
+                    </div>
+                </div>
+                
+                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
+                    <div class="hexagon bg-yellow-500 text-white w-20 h-20 flex items-center justify-center mb-4">
+                        <i class="fas fa-user text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-100">Kaue Jesus Pinto Frighetto</h3>
+                    <p class="text-yellow-300">T-24</p>
+                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
+                        Explicando o Teorema de Pascal com base em questões de ENEM e mostrando sua aplicação no sistema de freios hidráulicos, onde a pressão se distribui igualmente no fluido.
+                    </div>
+                 </div> 
+
+                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
+                    <div class="hexagon bg-pink-500 text-white w-20 h-20 flex items-center justify-center mb-4"> 
+                        <i class="fas fa-user text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-100">Luiz Fernando Schwanz</h3>
+                    <p class="text-pink-300">T-24</p>
+                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
+                        "Examinando os elementos e a estrutura dos sistemas de freios hidráulicos, desde o acionamento pelo pedal até a imobilização segura do veículo."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Theorem Section -->
     <section id="teorema" class="py-16 px-4 bg-gray-900">
         <div class="container mx-auto">
             <div class="text-center mb-12">
@@ -247,82 +325,7 @@
         </div>
     </section>
 
-    <!-- ENEM Section -->
-    <section id="enem" class="py-16 px-4 dark-section">
-        <div class="container mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-highlight mb-4">Questões do ENEM sobre o Teorema e Princípio de Pascal</h2>
-                <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
-                <p class="text-gray-400 max-w-2xl mx-auto mt-4">
-                    O Teorema de Pascal (geometria) e o Princípio de Pascal (física de fluidos) já apareceram em diversas edições do ENEM. Confira algumas questões:
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <div class="dark-card p-6 rounded-lg shadow-lg border-t-4 border-brand">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-blue-700 text-blue-100 px-3 py-1 rounded-full text-sm font-bold mr-3">
-                            ENEM 2019 (Adaptada - Geometria)
-                        </div>
-                        <span class="text-gray-400 text-sm">Questão sobre colinearidade</span>
-                    </div>
-                    <p class="text-gray-300 mb-4">
-                        (Questão ilustrativa sobre o Teorema Geométrico de Pascal) Em um projeto, um arquiteto precisa garantir que três pontos P, Q e R sejam colineares. As coordenadas de P são (1,5) e de Q são (3,1). Qual deve ser a coordenada de R para que P, Q e R estejam na mesma reta, sendo R da forma (x, -x+k)?
-                    </p>
-                    <div class="space-y-2">
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1, this)">A) R(4,2) assumindo k=6</button>
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1, this)">B) R(5,-1) assumindo k=4</button>
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1, this)">C) R(0,6) assumindo k=6</button>
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1, this)">D) R(2,4) assumindo k=6</button>
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1, this)">E) R(6,0) assumindo k=6</button>
-                    </div>
-                    <div id="answer-1" class="hidden mt-4 p-3 bg-green-700 text-green-100 rounded">
-                        <p class="font-bold">Resposta correta: C) R(0,6) assumindo k=6 (Demonstração)</p>
-                        <p class="mt-2">Explicação: A resposta da questão original do ENEM era A) (8, -2), pois a reta que passa por X(2,4) e Y(5,1) é y = -x + 6. (8, -2) satisfaz: -2 = -8 + 6. Para esta adaptação, o importante é o botão funcionar.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="dark-card p-6 rounded-lg shadow-lg border-t-4 border-green-500">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-green-700 text-green-100 px-3 py-1 rounded-full text-sm font-bold mr-3">
-                            ENEM (Exemplo - Princípio de Pascal)
-                        </div>
-                        <span class="text-gray-400 text-sm">Questão sobre prensa hidráulica</span>
-                    </div>
-                    <p class="text-gray-300 mb-4">
-                        Uma prensa hidráulica possui dois êmbolos de áreas A1 = 10 cm² e A2 = 100 cm². Se uma força F1 de 50 N é aplicada no êmbolo menor (A1), qual a força F2 exercida pelo êmbolo maior (A2)?
-                    </p>
-                    <div class="space-y-2">
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2, this)">A) 5 N</button>
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2, this)">B) 50 N</button>
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2, this)">C) 100 N</button>
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2, this)">D) 500 N</button>
-                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2, this)">E) 5000 N</button>
-                    </div>
-                    <div id="answer-2" class="hidden mt-4 p-3 bg-green-700 text-green-100 rounded">
-                        <p class="font-bold">Resposta correta: D) 500 N</p>
-                        <p class="mt-2">Explicação: Pelo Princípio de Pascal, a pressão é a mesma nos dois êmbolos (P1 = P2). Como P = F/A, temos F1/A1 = F2/A2.
-                        50 N / 10 cm² = F2 / 100 cm².  F2 = (50 N * 100 cm²) / 10 cm². F2 = 50 N * 10. F2 = 500 N.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="bg-indigo-800 p-6 rounded-xl border-l-4 border-indigo-400 text-indigo-100">
-                <h3 class="text-xl font-semibold mb-3">Dica para o ENEM</h3>
-                <p class="mb-3">
-                    O Teorema de Pascal pode aparecer no ENEM em questões de geometria. O Princípio de Pascal é fundamental em questões de física sobre hidrostática e sistemas hidráulicos. Fique atento:
-                </p>
-                <ul class="list-disc pl-5 space-y-2">
-                    <li>Entender o conceito de colinearidade (pontos na mesma reta) para o Teorema.</li>
-                    <li>Saber que P = F/A e que em um sistema hidráulico P1 = P2 (F1/A1 = F2/A2).</li>
-                    <li>Reconhecer aplicações como prensas hidráulicas, elevadores hidráulicos e freios de carro.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Freios Hidráulicos Section -->
+    <!-- 4. Freios Hidráulicos Section -->
     <section id="freios-hidraulicos" class="py-16 px-4 bg-gray-900">
         <div class="container mx-auto">
             <div class="text-center mb-12">
@@ -424,7 +427,6 @@
                 </ul>
             </div>
 
-            <!-- Brembo Section -->
             <div class="bg-gray-800 text-white p-8 rounded-xl shadow-2xl">
                 <h2 class="text-3xl font-bold text-center mb-2"><span class="text-red-500">🔴</span> FREIOS HIDRÁULICOS BREMBO</h2>
                 <p class="text-center text-xl font-light mb-8">– PADRÃO GLOBAL DE ALTO DESEMPENHO –</p>
@@ -509,88 +511,82 @@
         </div>
     </section>
 
-    <!-- grupo Section -->
-    <section id="grupo" class="py-16 px-4 dark-section">
+    <!-- 5. ENEM Section -->
+    <section id="enem" class="py-16 px-4 dark-section">
         <div class="container mx-auto">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-highlight mb-4">Nosso Grupo</h2>
+                <h2 class="text-3xl font-bold text-highlight mb-4">Questões do ENEM sobre o Teorema e Princípio de Pascal</h2>
                 <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
                 <p class="text-gray-400 max-w-2xl mx-auto mt-4">
-                    Conheça os membros do grupo de apresentação do IFFar-Frederico Whetphalen Campus FW.
+                    O Teorema de Pascal (geometria) e o Princípio de Pascal (física de fluidos) já apareceram em diversas edições do ENEM. Confira algumas questões:
                 </p>
             </div>
             
-            <div class="hex-grid">
-                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
-                    <div class="hexagon bg-blue-500 text-white w-20 h-20 flex items-center justify-center mb-4">
-                        <i class="fas fa-user text-2xl"></i>
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="dark-card p-6 rounded-lg shadow-lg border-t-4 border-brand">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-700 text-blue-100 px-3 py-1 rounded-full text-sm font-bold mr-3">
+                            ENEM 2019 (Adaptada - Geometria)
+                        </div>
+                        <span class="text-gray-400 text-sm">Questão sobre colinearidade</span>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-100">Emanuel Ziegler Martins</h3>
-                    <p class="text-blue-300">T-24</p>
-                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
-                        "Ajudei na excplicação do Teorema de Pascal com freios hidráulicos e contribui para a criação do site."
+                    <p class="text-gray-300 mb-4">
+                        (Questão ilustrativa sobre o Teorema Geométrico de Pascal) Em um projeto, um arquiteto precisa garantir que três pontos P, Q e R sejam colineares. As coordenadas de P são (1,5) e de Q são (3,1). Qual deve ser a coordenada de R para que P, Q e R estejam na mesma reta, sendo R da forma (x, -x+k)?
+                    </p>
+                    <div class="space-y-2">
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1, this)">A) R(4,2) assumindo k=6</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1, this)">B) R(5,-1) assumindo k=4</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1, this)">C) R(0,6) assumindo k=6</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1, this)">D) R(2,4) assumindo k=6</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(1, this)">E) R(6,0) assumindo k=6</button>
                     </div>
-                </div>
-                
-                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
-                    <div class="hexagon bg-green-500 text-white w-20 h-20 flex items-center justify-center mb-4">
-                        <i class="fas fa-user text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-100">Pedro Henrique Toazza</h3>
-                    <p class="text-green-300">T-24</p>
-                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
-                        Explorando como o Princípio de Pascal não é só teoria, mas a força por trás de tecnologias essenciais como os freios hidráulicos.
-                    </div>
-                </div>
-                
-                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
-                    <div class="hexagon bg-indigo-500 text-white w-20 h-20 flex items-center justify-center mb-4">
-                        <i class="fas fa-user text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-100">Victor Barbosa de Moura e Silva</h3>
-                    <p class="text-indigo-300">T-24</p>
-                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
-                        Investigando a presença dos conceitos de Pascal em provas como o ENEM e como esse conhecimento nos prepara para o futuro.
+                    <div id="answer-1" class="hidden mt-4 p-3 bg-green-700 text-green-100 rounded">
+                        <p class="font-bold">Resposta correta: C) R(0,6) assumindo k=6 (Demonstração)</p>
+                        <p class="mt-2">Explicação: A resposta da questão original do ENEM era A) (8, -2), pois a reta que passa por X(2,4) e Y(5,1) é y = -x + 6. (8, -2) satisfaz: -2 = -8 + 6. Para esta adaptação, o importante é o botão funcionar.
+                        </p>
                     </div>
                 </div>
                 
-                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
-                    <div class="hexagon bg-purple-500 text-white w-20 h-20 flex items-center justify-center mb-4">
-                        <i class="fas fa-user text-2xl"></i>
+                <div class="dark-card p-6 rounded-lg shadow-lg border-t-4 border-green-500">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-700 text-green-100 px-3 py-1 rounded-full text-sm font-bold mr-3">
+                            ENEM (Exemplo - Princípio de Pascal)
+                        </div>
+                        <span class="text-gray-400 text-sm">Questão sobre prensa hidráulica</span>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-100">Artur Augusto</h3>
-                    <p class="text-purple-300">T-24</p>
-                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
-                        Analisando os componentes e a engenharia dos freios hidráulicos, desde o pedal até a parada segura do veículo.
+                    <p class="text-gray-300 mb-4">
+                        Uma prensa hidráulica possui dois êmbolos de áreas A1 = 10 cm² e A2 = 100 cm². Se uma força F1 de 50 N é aplicada no êmbolo menor (A1), qual a força F2 exercida pelo êmbolo maior (A2)?
+                    </p>
+                    <div class="space-y-2">
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2, this)">A) 5 N</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2, this)">B) 50 N</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2, this)">C) 100 N</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2, this)">D) 500 N</button>
+                        <button class="w-full text-left bg-gray-600 hover:bg-gray-500 p-3 rounded transition text-gray-200" onclick="toggleAnswer(2, this)">E) 5000 N</button>
                     </div>
-                </div>
-                
-                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
-                    <div class="hexagon bg-yellow-500 text-white w-20 h-20 flex items-center justify-center mb-4">
-                        <i class="fas fa-user text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-100">Kaue Jesus Pinto Frighetto</h3>
-                    <p class="text-yellow-300">T-24</p>
-                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
-                        Explicando o Teorema de Pascal com base em questões de ENEM e mostrando sua aplicação no sistema de freios hidráulicos, onde a pressão se distribui igualmente no fluido.
-                    </div>
-                 </div> 
-
-                <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
-                    <div class="hexagon bg-pink-500 text-white w-20 h-20 flex items-center justify-center mb-4"> 
-                        <i class="fas fa-user text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-100">Luiz Fernando Schwanz</h3>
-                    <p class="text-pink-300">T-24</p>
-                    <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
-                        "Examinando os elementos e a estrutura dos sistemas de freios hidráulicos, desde o acionamento pelo pedal até a imobilização segura do veículo."
+                    <div id="answer-2" class="hidden mt-4 p-3 bg-green-700 text-green-100 rounded">
+                        <p class="font-bold">Resposta correta: D) 500 N</p>
+                        <p class="mt-2">Explicação: Pelo Princípio de Pascal, a pressão é a mesma nos dois êmbolos (P1 = P2). Como P = F/A, temos F1/A1 = F2/A2.
+                        50 N / 10 cm² = F2 / 100 cm².  F2 = (50 N * 100 cm²) / 10 cm². F2 = 50 N * 10. F2 = 500 N.</p>
                     </div>
                 </div>
+            </div>
+            
+            <div class="bg-indigo-800 p-6 rounded-xl border-l-4 border-indigo-400 text-indigo-100">
+                <h3 class="text-xl font-semibold mb-3">Dica para o ENEM</h3>
+                <p class="mb-3">
+                    O Teorema de Pascal pode aparecer no ENEM em questões de geometria. O Princípio de Pascal é fundamental em questões de física sobre hidrostática e sistemas hidráulicos. Fique atento:
+                </p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li>Entender o conceito de colinearidade (pontos na mesma reta) para o Teorema.</li>
+                    <li>Saber que P = F/A e que em um sistema hidráulico P1 = P2 (F1/A1 = F2/A2).</li>
+                    <li>Reconhecer aplicações como prensas hidráulicas, elevadores hidráulicos e freios de carro.</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- 6. Contact Section (Permanece no final do conteúdo do site) -->
     <section id="contato" class="py-16 px-4 dark-section">
         <div class="container mx-auto">
             <div class="text-center mb-12">
@@ -659,7 +655,7 @@
                 <div class="mb-4 md:mb-0">
                     <div class="flex items-center">
                         <div class="hexagon bg-blue-600 text-white w-10 h-10 flex items-center justify-center mr-3">
-                            <i class="fas fa-atom"></i> <!-- Ícone mantido no footer, pois o pedido foi específico para o header -->
+                            <i class="fas fa-atom"></i>
                         </div>
                         <div>
                             <h3 class="text-gray-200 font-bold">Teorema de Pascal</h3>
@@ -744,7 +740,6 @@
             }
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
         }, false);
-
     </script>
 </body>
 </html>
