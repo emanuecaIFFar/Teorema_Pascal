@@ -42,6 +42,10 @@
             position: sticky; /* Para o offset da rolagem funcionar melhor */
             top: 0;
             z-index: 50;
+            transition: transform 0.3s ease-in-out; /* Adicionado para a animação do header */
+        }
+        .header-hidden {
+            transform: translateY(-100%);
         }
         .text-highlight {
             color: #60a5fa; /* text-blue-400 */
@@ -85,7 +89,7 @@
 </head>
 <body class="min-h-screen">
     <!-- Header -->
-    <header class="dark-header text-white shadow-lg">
+    <header id="main-header" class="dark-header text-white shadow-lg"> {/* Adicionado ID ao header */}
         <div class="container mx-auto px-4 py-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-4 md:mb-0">
@@ -570,24 +574,30 @@
                     <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
                         Explicando o Teorema de Pascal com base em questões de ENEM e mostrando sua aplicação no sistema de freios hidráulicos, onde a pressão se distribui igualmente no fluido.
                     </div>
+                 </div> {/* Fechamento do card do Kaue */}
 
                 <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
-                    <div class="hexagon bg-yellow-500 text-white w-20 h-20 flex items-center justify-center mb-4">
+                    <div class="hexagon bg-pink-500 text-white w-20 h-20 flex items-center justify-center mb-4"> {/* Cor diferente para Luiz */}
                         <i class="fas fa-user text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-100">Luiz Fernando Schwanz</h3>
-                    <p class="text-yellow-300">T-24</p>
+                    <p class="text-pink-300">T-24</p>
                     <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
                         "Examinando os elementos e a estrutura dos sistemas de freios hidráulicos, desde o acionamento pelo pedal até a imobilização segura do veículo."
                     </div>
-                    
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-                
+    <section id="contato" class="py-16 px-4 dark-section">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-highlight mb-4">Contato & Sobre o Projeto</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8 items-start">
                  <div class="md:w-1/2">
                     <h3 class="text-xl font-semibold mb-4 text-gray-100">Informações</h3>
                     <div class="space-y-6">
@@ -634,6 +644,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="md:w-1/2">
+                    <img src="fotos/fachada-iffar.jpg" alt="Fachada IFFar FW" class="rounded-lg shadow-xl w-full">
+                    <p class="text-center text-gray-400 mt-2 text-sm">Instituto Federal Farroupilha - Campus Frederico Westphalen</p>
+                </div>
             </div>
         </div>
     </section>
@@ -668,8 +682,13 @@
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    // Calculate offset for fixed header (approx 80px)
-                    const headerOffset = 80;
+                    const header = document.getElementById('main-header');
+                    // Usar a altura do header visível (ou 0 se estiver oculto e fixo)
+                    // Como o header é sticky, ele sempre ocupa espaço no cálculo do offset se não estiver transformado.
+                    // Para um header que realmente some, o offset pode variar.
+                    // Mas como usamos transform, ele ainda está "lá" para o layout.
+                    const headerOffset = header.offsetHeight > 0 ? header.offsetHeight : 80; // Fallback se offsetHeight for 0
+                    
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -688,27 +707,21 @@
             const allAnswerButtonsInQuestion = buttonElement.parentElement.querySelectorAll('button');
 
             if (answerDiv.classList.contains('hidden')) {
-                // Se estava escondido, mostra e destaca o botão clicado
                 answerDiv.classList.remove('hidden');
-                // Remove destaque de todos os botões da questão
                 allAnswerButtonsInQuestion.forEach(btn => {
                     btn.classList.remove('bg-blue-500', 'text-white');
                     btn.classList.add('bg-gray-600', 'text-gray-200');
                 });
-                // Adiciona destaque ao botão clicado
                 buttonElement.classList.remove('bg-gray-600', 'text-gray-200');
                 buttonElement.classList.add('bg-blue-500', 'text-white');
                 lastOpenedAnswerButton = buttonElement;
             } else {
-                // Se já estava visível
                 if (lastOpenedAnswerButton === buttonElement) {
-                    // E o mesmo botão foi clicado, esconde
                     answerDiv.classList.add('hidden');
                     buttonElement.classList.remove('bg-blue-500', 'text-white');
                     buttonElement.classList.add('bg-gray-600', 'text-gray-200');
                     lastOpenedAnswerButton = null;
                 } else {
-                    // Outro botão da mesma questão foi clicado, apenas atualiza o destaque
                     allAnswerButtonsInQuestion.forEach(btn => {
                         btn.classList.remove('bg-blue-500', 'text-white');
                         btn.classList.add('bg-gray-600', 'text-gray-200');
@@ -719,6 +732,25 @@
                 }
             }
         }
+
+        // Hide/Show header on scroll
+        const header = document.getElementById('main-header');
+        let lastScrollTop = 0;
+        const scrollThreshold = 50; // Limiar de rolagem em pixels antes de esconder o header
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+                // Scroll Down
+                header.classList.add('header-hidden');
+            } else {
+                // Scroll Up or at the top
+                header.classList.remove('header-hidden');
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Para tratar scroll no topo ou em dispositivos móveis
+        }, false);
+
     </script>
 </body>
 </html>
