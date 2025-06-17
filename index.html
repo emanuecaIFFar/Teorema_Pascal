@@ -27,20 +27,20 @@
             animation: float 4s ease-in-out infinite;
         }
         body {
-            background-color: #111827; 
-            color: #d1d5db; 
-            overflow-wrap: break-word; 
-            word-wrap: break-word; 
+            background-color: #111827;
+            color: #d1d5db;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
         .dark-section {
-            background-color: #1f2937; 
+            background-color: #1f2937;
         }
         .dark-card {
-            background-color: #374151; 
-            color: #e5e7eb; 
+            background-color: #374151;
+            color: #e5e7eb;
         }
         .dark-header {
-            background-color: #0c1b33; 
+            background-color: #0c1b33; /* Cor de fundo original mantida */
             position: sticky;
             top: 0;
             z-index: 50;
@@ -50,13 +50,13 @@
             transform: translateY(-100%);
         }
         .text-highlight {
-            color: #60a5fa; 
+            color: #60a5fa;
         }
         .text-brand-light {
-            color: #93c5fd; 
+            color: #93c5fd;
         }
         .border-brand {
-            border-color: #3b82f6; 
+            border-color: #3b82f6;
         }
         .member-card .member-description {
             visibility: hidden;
@@ -68,8 +68,8 @@
             transform: translateX(-50%);
             width: 280px;
             z-index: 10;
-            overflow-wrap: break-word; 
-            word-wrap: break-word; 
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
         .member-card:hover .member-description {
             visibility: visible;
@@ -83,28 +83,29 @@
             margin-left: -8px;
             border-width: 8px;
             border-style: solid;
-            border-color: #1f2937 transparent transparent transparent;
+            border-color: #1f2937 transparent transparent transparent; /* Ajustado para a cor de fundo do card, se necessário */
+        }
+        /* Para o bg-gray-650 usado nas tabelas Brembo, se não estiver definido pelo Tailwind */
+        .bg-gray-650 {
+            background-color: #4b5563; /* Um tom entre gray-600 e gray-700 */
         }
     </style>
 </head>
 <body class="min-h-screen">
-    <!-- Header -->
-    <header id="main-header" class="dark-header text-white shadow-lg">
-        <div class="container mx-auto px-4 py-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="flex items-center mb-4 md:mb-0">
-                    <div>
-                        <h1 class="text-2xl md:text-3xl font-bold">Teorema de Pascal</h1>
-                        <p class="text-brand-light">Trabalho em Grupo - IFFar-Frederico Westphalen, Campus FW</p>
-                    </div>
+    <!-- Header Minimalista -->
+    <header id="main-header" class="dark-header text-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-col sm:flex-row justify-between items-center"> 
+                <div class="mb-2 sm:mb-0"> 
+                    <h1 class="text-xl md:text-2xl font-bold text-center sm:text-left">Teorema de Pascal</h1>
+                    
                 </div>
-                <nav class="flex flex-wrap gap-2 md:gap-6">
-                    <a href="#sobre" class="hover:text-brand-light transition">Sobre</a>
-                    <a href="#grupo" class="hover:text-brand-light transition">Nosso Grupo</a>
-                    <a href="#teorema" class="hover:text-brand-light transition">O Teorema</a>
-                    <a href="#freios-hidraulicos" class="hover:text-brand-light transition">Freios Hidráulicos</a>
-                    <a href="#enem" class="hover:text-brand-light transition">ENEM</a>
-                    <!-- Link Contato removido do cabeçalho -->
+                <nav class="flex flex-wrap justify-center sm:justify-end gap-x-3 gap-y-1 md:gap-x-5">
+                    <a href="#sobre" class="hover:text-brand-light transition text-sm">Sobre</a>
+                    <a href="#grupo" class="hover:text-brand-light transition text-sm">Nosso Grupo</a>
+                    <a href="#teorema" class="hover:text-brand-light transition text-sm">O Teorema</a>
+                    <a href="#freios-hidraulicos" class="hover:text-brand-light transition text-sm">Freios Hidráulicos</a>
+                    <a href="#enem" class="hover:text-brand-light transition text-sm">ENEM</a>
                 </nav>
             </div>
         </div>
@@ -118,7 +119,7 @@
                 Um estudo das propriedades fascinantes da geometria projetiva e suas aplicações práticas, como em sistemas de freios hidráulicos.
             </p>
             <a href="#sobre" class="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300">
-                Saiba Mais <i class="fas fa-arrow-down ml-2"></i> <!-- Alterado o href para a primeira seção real -->
+                Saiba Mais <i class="fas fa-arrow-down ml-2"></i>
             </a>
         </div>
     </section>
@@ -177,7 +178,7 @@
                     Conheça os <strong>integrantes</strong> do grupo de apresentação, e no que eles contribuiram para o trabalho!.
                 </p>
             </div>
-            
+
             <div class="hex-grid">
                 <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
                     <div class="hexagon bg-blue-500 text-white w-20 h-20 flex items-center justify-center mb-4">
@@ -189,7 +190,7 @@
                         Ajudei na excplicação do Teorema de Pascal com freios hidráulicos e contribui para a criação do site.
                     </div>
                 </div>
-                
+
                 <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
                     <div class="hexagon bg-green-500 text-white w-20 h-20 flex items-center justify-center mb-4">
                         <i class="fas fa-user text-2xl"></i>
@@ -200,7 +201,7 @@
                         Explorando como o Princípio de Pascal não é só teoria, mas a força por trás de tecnologias essenciais como os freios hidráulicos.
                     </div>
                 </div>
-                
+
                 <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
                     <div class="hexagon bg-indigo-500 text-white w-20 h-20 flex items-center justify-center mb-4">
                         <i class="fas fa-user text-2xl"></i>
@@ -211,7 +212,7 @@
                         Investigando a presença dos conceitos de Pascal em provas como o ENEM e como esse conhecimento nos prepara para o futuro.
                     </div>
                 </div>
-                
+
                 <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
                     <div class="hexagon bg-purple-500 text-white w-20 h-20 flex items-center justify-center mb-4">
                         <i class="fas fa-user text-2xl"></i>
@@ -222,7 +223,7 @@
                         Contribui na pesquisa sobre freios hidráulicos e na pesquisa sobre a marca brembo
                     </div>
                 </div>
-                
+
                 <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
                     <div class="hexagon bg-yellow-500 text-white w-20 h-20 flex items-center justify-center mb-4">
                         <i class="fas fa-user text-2xl"></i>
@@ -232,10 +233,10 @@
                     <div class="member-description bg-gray-800 text-gray-200 p-3 rounded-md shadow-lg text-sm">
                         Explicando o Teorema de Pascal com base em questões de ENEM e mostrando sua aplicação no sistema de freios hidráulicos, onde a pressão se distribui igualmente no fluido.
                     </div>
-                 </div> 
+                 </div>
 
                 <div class="dark-card rounded-lg p-6 flex flex-col items-center justify-center shadow-md relative member-card">
-                    <div class="hexagon bg-pink-500 text-white w-20 h-20 flex items-center justify-center mb-4"> 
+                    <div class="hexagon bg-pink-500 text-white w-20 h-20 flex items-center justify-center mb-4">
                         <i class="fas fa-user text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-100">Luiz Fernando Schwanz</h3>
@@ -255,7 +256,7 @@
                 <h2 class="text-3xl font-bold text-highlight mb-4">O Teorema de Pascal</h2>
                 <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
             </div>
-            
+
             <div class="flex flex-col md:flex-row items-center gap-8 mb-16">
                 <div class="md:w-1/2">
                     <h3 class="text-2xl font-semibold text-gray-100 mb-4">O que afirma o Teorema?</h3>
@@ -278,7 +279,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="grid md:grid-cols-3 gap-8 mb-12">
                 <div class="dark-card p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
                     <div class="text-blue-400 text-3xl mb-4">
@@ -308,7 +309,7 @@
                     </p>
                 </div>
             </div>
-            
+
             <div class="bg-blue-800 text-white p-8 rounded-xl">
                 <div class="flex flex-col md:flex-row items-center gap-6">
                     <div class="md:w-1/3 text-center md:text-right">
@@ -474,7 +475,7 @@
                         </li>
                     </ul>
                 </div>
-                
+
                 <div class="mb-8 p-6 bg-gray-700 rounded-lg">
                      <h3 class="text-2xl font-semibold mb-3">🔬 Tecnologia Exclusiva: Sensify</h3>
                      <p class="text-gray-300 mb-3">
@@ -521,7 +522,7 @@
                     O Teorema de Pascal (geometria) e o Princípio de Pascal (física de fluidos) já apareceram em diversas edições do ENEM. Confira algumas questões:
                 </p>
             </div>
-            
+
             <div class="grid md:grid-cols-2 gap-8 mb-12">
                 <div class="dark-card p-6 rounded-lg shadow-lg border-t-4 border-brand">
                     <div class="flex items-center mb-4">
@@ -546,7 +547,7 @@
                         </p>
                     </div>
                 </div>
-                
+
                 <div class="dark-card p-6 rounded-lg shadow-lg border-t-4 border-green-500">
                     <div class="flex items-center mb-4">
                         <div class="bg-green-700 text-green-100 px-3 py-1 rounded-full text-sm font-bold mr-3">
@@ -571,7 +572,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="bg-indigo-800 p-6 rounded-xl border-l-4 border-indigo-400 text-indigo-100">
                 <h3 class="text-xl font-semibold mb-3">Dica para o ENEM</h3>
                 <p class="mb-3">
@@ -627,7 +628,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="mt-8">
                         <h3 class="text-xl font-semibold mb-4 text-gray-100">Mídias do Projeto</h3>
                         <div class="flex space-x-4">
@@ -679,8 +680,8 @@
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     const header = document.getElementById('main-header');
-                    const headerOffset = header.offsetHeight > 0 ? header.offsetHeight : 80; 
-                    
+                    const headerOffset = header.offsetHeight > 0 ? header.offsetHeight : 60; // Ajustado para corresponder ao novo header mais fino
+
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -699,25 +700,47 @@
             const allAnswerButtonsInQuestion = buttonElement.parentElement.querySelectorAll('button');
 
             if (answerDiv.classList.contains('hidden')) {
-                answerDiv.classList.remove('hidden');
-                allAnswerButtonsInQuestion.forEach(btn => {
+                // Fecha qualquer outra resposta aberta na mesma questão (se houver)
+                // e reseta os botões da questão
+                const otherOpenAnswer = document.querySelector(`.dark-card #answer-${id}:not(.hidden)`);
+                if (otherOpenAnswer && otherOpenAnswer !== answerDiv) {
+                    otherOpenAnswer.classList.add('hidden');
+                }
+                 allAnswerButtonsInQuestion.forEach(btn => {
                     btn.classList.remove('bg-blue-500', 'text-white');
                     btn.classList.add('bg-gray-600', 'text-gray-200');
                 });
+
+
+                answerDiv.classList.remove('hidden');
                 buttonElement.classList.remove('bg-gray-600', 'text-gray-200');
                 buttonElement.classList.add('bg-blue-500', 'text-white');
-                lastOpenedAnswerButton = buttonElement;
+                lastOpenedAnswerButton = buttonElement; // Guarda o botão que abriu a resposta
+
             } else {
+                 // Se a resposta já está aberta E o botão clicado é o que a abriu
                 if (lastOpenedAnswerButton === buttonElement) {
                     answerDiv.classList.add('hidden');
                     buttonElement.classList.remove('bg-blue-500', 'text-white');
                     buttonElement.classList.add('bg-gray-600', 'text-gray-200');
-                    lastOpenedAnswerButton = null;
+                    lastOpenedAnswerButton = null; // Limpa o último botão
                 } else {
-                    allAnswerButtonsInQuestion.forEach(btn => {
+                    // Se a resposta está aberta, mas clicou em outro botão da mesma pergunta
+                    // Fecha a resposta atual
+                     answerDiv.classList.add('hidden');
+                    // Reseta o botão que estava ativo
+                    if(lastOpenedAnswerButton) {
+                        lastOpenedAnswerButton.classList.remove('bg-blue-500', 'text-white');
+                        lastOpenedAnswerButton.classList.add('bg-gray-600', 'text-gray-200');
+                    }
+                     // Abre a nova resposta (na verdade, ela já estaria aberta, então só marcamos o botão)
+                    // Este caso não deveria acontecer se a lógica de fechar outras estiver correta.
+                    // Mas, para segurança, vamos garantir que a resposta correta seja mostrada e o botão marcado.
+                    allAnswerButtonsInQuestion.forEach(btn => { // Reseta todos
                         btn.classList.remove('bg-blue-500', 'text-white');
                         btn.classList.add('bg-gray-600', 'text-gray-200');
                     });
+                    answerDiv.classList.remove('hidden'); // Certifica que está visível
                     buttonElement.classList.remove('bg-gray-600', 'text-gray-200');
                     buttonElement.classList.add('bg-blue-500', 'text-white');
                     lastOpenedAnswerButton = buttonElement;
@@ -725,10 +748,11 @@
             }
         }
 
+
         // Hide/Show header on scroll
         const header = document.getElementById('main-header');
         let lastScrollTop = 0;
-        const scrollThreshold = 50; 
+        const scrollThreshold = 50;
 
         window.addEventListener('scroll', function() {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -738,7 +762,7 @@
             } else {
                 header.classList.remove('header-hidden');
             }
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         }, false);
     </script>
 </body>
